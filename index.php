@@ -1,8 +1,12 @@
 <?php 
+    session_start();
     require_once 'functions.php';
     if (isset($_GET['lunghezza'])) {
         $lunghezza = $_GET['lunghezza'];
         $password = randomPassword($lunghezza);
+        $_SESSION['password']= $password;
+        header(('Location: show_password.php'));
+        exit();
     }
 ?>
 
@@ -21,6 +25,5 @@
         <input type="number" name="lunghezza" id="lunghezza" min="1" max="20" required>
         <button type="submit">Genera Password</button>
     </form>
-    <?php echo "La tua password di lunghezza $lunghezza è : $password"?>
 </body>
 </html>
